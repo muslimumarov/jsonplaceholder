@@ -33,6 +33,9 @@ const getData=(data)=>{
     <td><div class="btnBox">
     <a href="./html/post.html?userId=${item.id}" class="btn btn-primary active">
     <i class="fa fa-eye" aria-hidden="true"></i></a></div></td>
+    <td><div class="btnBox">
+    <a href="./html/albums.html?userId=${item.id}" class="btn btn-primary activee">
+    <i class="fa fa-eye" aria-hidden="true"></i></a></div></td>
     </tr>
     `)
   })

@@ -28,7 +28,35 @@ cursor:not-allowed !important;
   background-color: red !important;
 }
 .modal-dialog {
+  margin-top: 50px !important;
+  margin-left: 460px !important;
   max-width: 50% !important;
   height: 60px !important;
   width: 50%;
+}
+.activee {
+  background-color: rgb(17, 199, 202) !important;
+}
+.rasm { 
+  width: 50px;
+}
+.rasm:focus {
+  width: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button {
+  background-color: transparent;
+}
+.btnImg {
+  transition: 0.3s;
+}
+.btnImg:hover {
+  background-color: #2f8606;
+  transform: scale(1.2, 1.2);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.one {
+ padding-right: 0.1px !important;
 }
