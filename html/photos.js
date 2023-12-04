@@ -1,34 +1,48 @@
 var data=null
+var userId=null
 $(document).ready(()=>{
-  getUsers()
+  getPhotos()
 })
-const getUsers=()=>{
-  $.ajax({
-    url:`${api}/photos`,
-    method:"get",
-    success:(res)=>{
-      data=res
-      console.log(res)
-      getPhotos(res)
-    },
-    error:(err)=>{
-      console.log(err);
-    }
 
-  })
+const getID=()=>{
+  let link=window.location.href;
+  let id=link.slice(link.indexOf("id=")+3)
+  userId=id
 }
-const getPhotos = (data) => {
-  $(".data").html("")
-  data.map((item, key) => {
-    $('.data').append(`
-    <tr>
-    <td >${key + 1}</td>
-    <td >${item.title}</td>
-    <td ><div class="btnBox"><a class="btnImg" onclick="openModall('${item.url}')"><img class="rasm" src="${item.thumbnailUrl}"></a></div></td>
-    </tr>`)
+
+const getPhotos = () => {
+  getID()
+  console.log(userId);
+  $.ajax({
+    url: `${api}/photos?albumId=${userId}`,
+    method: "get",
+    success: (res) => {
+      data = res;
+      console.log(res);
+      displayPhotos(res);
+    },
+    error: (err) => {
+      console.log(err)
+    },
   });
 };
-const openModall = (url) => {
+const displayPhotos = (data) => {
+  $(".data").html("");
+  data.map((item, key) => {
+    $(".data").append(`
+      <tr>
+        <td>${key + 1}</td>
+        <td>${item.title}</td>
+        <td>
+          <div class="btnBox">
+            <a class="btnImg" onclick="openModal('${item.url}')">
+              <img class="rasm" src="${item.thumbnailUrl}">
+            </a>
+          </div>
+        </td>
+      </tr>`);
+  })}
+const openModal = (url) => {
   $('#exampleModal').modal('show');
   $(".modal-dialog").html(`<img src="${url}">`);
 };
